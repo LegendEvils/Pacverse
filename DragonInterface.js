@@ -9,21 +9,19 @@ window.dragon = {
 
   walletConnect: function (address) {
     window.dragon.walletAddress = address.toString();
-    if (unityInstance != undefined)
-    {
+    if (unityInstance != undefined) {
       unityInstance.SendMessage('DragonWeb3Connector', 'WalletConnected', address.toString());
     }
   },
-  
-  walletSign: async function(){
-    if(unityInstance != undefined)
-    {
+
+  walletSign: async function () {
+    if (unityInstance != undefined) {
       await window.dragon.getSignMessage()
       console.log("signedMessage", window.dragon.signedMsg)
-      unityInstance.SendMessage('CharacterCreation', 'GetSignedMsg',  window.dragon.signedMsg);
+      unityInstance.SendMessage('CharacterCreation', 'GetSignedMsg', window.dragon.signedMsg);
     }
   },
-  
+
   checkWalletConnect: function () {
     if (window.dragon.walletAddress != undefined)
       unityInstance.SendMessage('DragonWeb3Connector', 'WalletConnected', window.dragon.walletAddress);
